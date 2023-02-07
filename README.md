@@ -1,6 +1,19 @@
 # courses_students
 aplicación web con estructura monolítica con Python que permita la gestión de cursos, estudiantes y la asignación entre estos, teniendo en cuenta que un estudiante puede estar asociado a varios cursos.
 
+
+## Pasos para levantar el proyecto
+0. Crear file `.env` en la carpeta de `courses_students` con estos parametros:
+    ```
+    NAME=db_name
+    USER=db_user
+    PASSWORD=db_password
+    HOST=db_host
+    PORT=db_port
+    LOCAL=true
+    ```
+    La variable LOCAL intercambia la base de datos local SQlite con PostgreSQL online
+    
 1. Crear un nuevo entorno virtual:
 
         python3 -m venv env
@@ -15,7 +28,7 @@ aplicación web con estructura monolítica con Python que permita la gestión de
 
         pip install -r requirements.txt
 
-5. Inicializar la base de datos:
+5. Inicializar el servidor:
 
         python manage.py runserver
 
