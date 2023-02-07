@@ -20,6 +20,7 @@ SECRET_KEY = 'django-insecure-ht$p6x7$7m()w$k@lp&(svpnqk%d*ar_ysd&z7#8ryk#r4n0n9
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+LOCAL = env("LOCAL")
 
 ALLOWED_HOSTS = []
 
@@ -51,7 +52,7 @@ ROOT_URLCONF = 'courses_students.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,17 +70,24 @@ WSGI_APPLICATION = 'courses_students.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
-        'HOST': env('HOST'),
-        'PORT': env('PORT'),
+if LOCAL:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': env('NAME'),
+            'USER': env('USER'),
+            'PASSWORD': env('PASSWORD'),
+            'HOST': env('HOST'),
+            'PORT': env('PORT'),
+        }
+    }
 
 # postgresql://habanacash2022:v2_3ys2L_pYHUMt9aLYY7cvLRvEqms9g@db.bit.io:5432/habanacash2022/courses_students
 

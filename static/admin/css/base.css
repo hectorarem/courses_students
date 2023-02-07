@@ -6,9 +6,9 @@
 
 /* VARIABLE DEFINITIONS */
 :root {
-  --primary: #675166;
-  --secondary: #4c2b4c;
-  --accent: #f556b5;
+  --primary: #636367;
+  --secondary: #48484c;
+  --accent: #f5dd5d;
   --primary-fg: #fff;
 
   --body-fg: #333;
@@ -40,7 +40,7 @@
 
   --darkened-bg: #f8f8f8; /* A bit darker than --body-bg */
   --selected-bg: #e4e4e4; /* E.g. selected table cells */
-  --selected-row: #feebff;
+  --selected-row: #ffc;
 
   --button-fg: #fff;
   --button-bg: var(--primary);

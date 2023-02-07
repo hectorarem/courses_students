@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block title %}
+{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}" >
+        <!--{{ site_header|default:_('Django administration') }}-->
+        <img src="{% static 'logo.jpeg' %}" alt="logo" height="50px" >
+    </a>
+</h1>
+{% endblock %}
+
+{% block middle_header %}
+    {% if get_config.rate_enabled == False and user.is_superuser %}
+        <h2 id="site-name">
+            <a href="{% url 'rate:rate_enabled' %}" >
+                Debe activar los Rates
+            </a>
+        </h2>
+    {% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
