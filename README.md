@@ -34,4 +34,15 @@ aplicación web con estructura monolítica con Python que permita la gestión de
 
 6. Entrar desde el navegador en http://127.0.0.1:8000
 
-7. Usuario: angelica Password: zaqwsxcderfvbgtyhnmjuik
+7. Usuario Admin: `angelica` Password: `zaqwsxcderfvbgtyhnmjuik`
+
+## Descripción del ejercicio
+
+Para ver la descripción completa del ejercicio, ir a
+`docs/ejercicio.docx`
+
+## Solución explicada
+
+Para ver la explicación de la solucion realizada ver
+
+`docs/solucion.docx`

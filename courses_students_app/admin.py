@@ -19,6 +19,7 @@ admin.site.register(Student, StudentAdmin)
 
 
 class CourseAdmin(admin.ModelAdmin):
+    date_hierarchy = "start_date"
     list_display = ('pk', 'name', 'schedule', 'start_date', 'end_date', 'numeros_de_estudiantes_asociados')
     list_display_links = ("pk",)
     list_editable = ('name', 'schedule', 'start_date', 'end_date')
