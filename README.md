@@ -46,3 +46,25 @@ Para ver la descripción completa del ejercicio, ir a
 Para ver la explicación de la solucion realizada ver
 
 `docs/solucion.docx`
+
+## Dumpdata y loaddata
+
+Se pueden guardar o restaurar datos usando los fixtures de django
+En este caso ayuda mucho si quieres probar en diferentes bases de datos
+y solo poblar una.
+
+para realizar la salva tenemos
+
+`python manage.py dumpdata > fixtures/whole.json`
+
+para restaurar, primero debemos borrar los contenttypes
+
+`python manage.py shell`
+
+`from django.contrib.contenttypes.models import ContentType`
+
+`ContentType.objects.all().delete()`
+
+y despues ya ejecutamos el loaddata
+
+ `python manage.py loaddata fixture/whole.json`
