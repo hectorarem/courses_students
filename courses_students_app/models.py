@@ -17,16 +17,24 @@ class Student(models.Model):
     def __str__(self):
         return f"{self.name} - {self.lastname}"
 
-    def assosiates_courses(self):
+    def cursos_asociados(self):
         return " || ".join([c.name for c in self.course_set.all()])
 
 
 class Course(models.Model):
+    SCHEDULE_LIST = (
+        ("9_11", '9:00 AM - 11:00 AM',),
+        ("11_13", '11:00 AM - 1:00 PM',),
+        ("13_15", '1:00 PM - 3:00 PM',),
+        ("15_17", '3:00 PM - 5:00 PM',),
+        ("17_19", '5:00 PM - 7:00 PM',),
+        ("19_21", '7:00 PM - 9:00 PM',),
+    )
     name = models.CharField(verbose_name="Nombre", max_length=255)
-    schedule = models.CharField(verbose_name="Horario", max_length=255)
+    schedule = models.CharField(verbose_name="Horario", max_length=255, choices=SCHEDULE_LIST)
     start_date = models.DateTimeField(verbose_name="Fecha inicio")
     end_date = models.DateTimeField(verbose_name="Fecha fin")
-    students = models.ManyToManyField(Student, verbose_name="Estudiantes")
+    students = models.ManyToManyField(Student, verbose_name="Estudiantes", blank=True)
 
     class Meta:
         verbose_name = 'Curso'
@@ -34,9 +42,9 @@ class Course(models.Model):
         ordering = ('start_date',)
 
     def __str__(self):
-        return f"{self.name} ({self.schedule})"
+        return f"{self.name} ({self.get_schedule_display()})"
 
-    def number_associates_students(self):
+    def numeros_de_estudiantes_asociados(self):
         return self.students.all().count()
 
 
