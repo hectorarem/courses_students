@@ -90,7 +90,6 @@ else:
         }
     }
 
-# postgresql://habanacash2022:v2_3ys2L_pYHUMt9aLYY7cvLRvEqms9g@db.bit.io:5432/habanacash2022/courses_students
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
