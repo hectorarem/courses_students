@@ -1,0 +1,160 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block dashboard_active %}{% endblock %}
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
+
+            <!-- Sales Card -->
+            <div class="col-md-3">
+              <div class="card info-card sales-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Estudiantes <span>
+                    <i class="bi bi-gender-female"></i>
+                    <i class="bi bi-gender-male"></i>
+                  </span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-person-badge"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{students_count}}</h6>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+            <!-- Revenue Card -->
+            <div class="col-md-3">
+              <div class="card info-card revenue-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Cursos <span><i class="bi bi-bookmark-heart"></i></span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-book-fill"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{courses_count}}</h6>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+
+
+          </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <div class="col-lg-12">
+        <div class="row">
+          <div class="col-md-4">
+              <div class="card">
+                <div class="card-body pb-0">
+                  <h5 class="card-title">Cursos con mayor matrícula <span>| Últimos 6 meses</span></h5>
+
+                  <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      echarts.init(document.querySelector("#trafficChart")).setOption({
+                        tooltip: {
+                          trigger: 'item'
+                        },
+                        legend: {
+                          top: '1%',
+                          left: 'center'
+                        },
+                        series: [{
+                          name: 'Curso/Matrícula',
+                          type: 'pie',
+                          radius: ['40%', '70%'],
+                          avoidLabelOverlap: false,
+                          label: {
+                            show: false,
+                            position: 'center'
+                          },
+                          emphasis: {
+                            label: {
+                              show: true,
+                              fontSize: '18',
+                              fontWeight: 'bold'
+                            }
+                          },
+                          labelLine: {
+                            show: false
+                          },
+                          data: [
+                              {% for course_sm in top_3_courses_last_six_months %}
+                                {
+                                  value: {{course_sm.total_student}},
+                                  name: '{{course_sm.name}}'
+                                },
+                              {% endfor %}
+                          ]
+                        }]
+                      });
+                    });
+                  </script>
+
+                </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="card">
+            <div class="card-body pb-0">
+              <h5 class="card-title">Cursos con mayor matrícula <span>| Hasta hoy</span></h5>
+
+              <div class="news">
+                {% for course in top_3_courses %}
+                  <div class="post-item clearfix">
+                    <img src="{% static 'imgs/course.png' %}" alt="course">
+                    <h4><a href="#">{{course.name}}</a></h4>
+                    <p>Cantidad de estudiantes: {{course.total_student}} <br><i class="bi bi-calendar"></i>  {{course.start_date|date}} ({{course.get_schedule_display}})</p>
+                  </div>
+                {% endfor %}
+              </div><!-- End sidebar recent posts-->
+
+            </div>
+          </div>
+          </div>
+            <div class="col-md-4">
+              <div class="card">
+            <div class="card-body pb-0">
+              <h5 class="card-title">Últimos estudiantes <span>| ingresados</span></h5>
+
+              <div class="news">
+                {% for student in students %}
+                  <div class="post-item clearfix">
+                    <img src="{% static 'imgs/student.png' %}" alt="course">
+                    <h4><a href="#">{{student.name}}</a></h4>
+                    <p>{{student.full_info}}</p>
+                  </div>
+                {% endfor %}
+              </div><!-- End sidebar recent posts-->
+
+            </div>
+          </div>
+          </div>
+        </div>
+        </div><!-- End Right side columns -->
+
+      </div>
+    </section>
+{% endblock %}

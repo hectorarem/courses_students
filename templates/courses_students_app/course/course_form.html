@@ -1,0 +1,45 @@
+{% extends 'courses_students_app/course/course_list.html' %}
+{% load static %}
+
+{% block title %} Formulario Curso {% endblock %}
+
+{% block breadcrumb %}
+    {{block.super}}
+    <li class="breadcrumb-item"><a href="{% url 'courses_create' %}">Curso Crear</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+        <div class="card-header">
+            <h3 class="card-title">Crear <span>| curso</span></h3>
+        </div>
+        <div class="card-body">
+            <form class="form-horizontal" method="post">
+                {% csrf_token %}
+
+                <div class="form-body">
+                    {% for campo in form %}
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">{{ campo.label_tag }}</label>
+                        <div class="col-md-6">
+                            {{ campo }}
+                        </div>
+                        <small style="color: orangered">{{ campo.errors }}</small>
+                    </div>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-actions fluid ">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <a href="{% url 'courses_list' %}" type="button"
+                           class="btn btn-danger">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

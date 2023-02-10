@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block course_active %}{% endblock %}
+{% block title %} Cursos {% endblock %}
+
+{% block breadcrumb %}
+    {{block.super}}
+    <li class="breadcrumb-item"><a href="{% url 'courses_list' %}">Cursos Listado</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+        <div class="card-header">
+            <a href="{% url 'courses_create' %}" class="btn btn-primary" style="float: right">
+                <span class="bi bi-plus"> Curso</span>
+            </a>
+            <h3 class="card-title">Listado de <span>| cursos</span></h3>
+
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover datatable">
+                <thead>
+                <tr>
+                    <th>
+                        No.
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Fecha Inicio
+                    </th>
+                    <th>
+                        Fecha Fin
+                    </th>
+                    <th>
+                        Horario
+                    </th>
+                    <th>
+                        Cantidad de Estudiantes
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for u in courses %}
+                <tr>
+                    <td>
+                        {{ forloop.counter }}
+                    </td>
+                    <td>
+                        {{ u.name }}
+                    </td>
+                    <td>
+                        {{ u.start_date|date }}
+                    </td>
+                    <td>
+                        {{ u.end_date|date }}
+                    </td>
+                    <td>
+                        {{ u.get_schedule_display }}
+                    </td>
+                    <td>
+                        {{ u.numeros_de_estudiantes_asociados }}
+                    </td>
+                    <td>
+                        <span class="input-group-sm">
+                            <a href="{% url 'courses_detail' u.pk %}"
+                               class="btn btn-sm btn-info">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="{% url 'courses_update' u.pk %}"
+                               class="btn btn-sm btn-primary">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+
+                            <a href="{% url 'courses_delete' u.pk %}"
+                               class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -98,64 +98,6 @@
           {% endblock %}
           {% block sidebar %}{% endblock %}
           <br class="clear">
-            <div class="module">
-                <table style="width: 100%">
-                    <caption>
-                        TOP 3: Cursos con más estudiantes de por vida
-                    </caption>
-                    <theader>
-                        <tr>
-                            <th>
-                                Curso
-                            </th>
-                            <th>
-                                Cantidad
-                            </th>
-                        </tr>
-                    </theader>
-                    <tbody>
-                    {% for top in top_3_courses %}
-                    <tr>
-                        <th scope="row">
-                            <a href="/admin/courses_students_app/course/{{top.pk}}/change/">
-                                {{top.name}}
-                            </a>
-                        </th>
-                        <td>{{top.total_student}}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div class="module">
-                <table style="width: 100%">
-                    <caption>
-                        TOP 3: Cursos terminados con más estudiantes en los ultimos 6 meses
-                    </caption>
-                    <theader>
-                        <tr>
-                            <th>
-                                Curso
-                            </th>
-                            <th>
-                                Cantidad
-                            </th>
-                        </tr>
-                    </theader>
-                    <tbody>
-                    {% for top in top_3_courses_last_six_months %}
-                    <tr>
-                        <th scope="row">
-                            <a href="/admin/courses_students_app/course/{{top.pk}}/change/">
-                                {{top.name}}
-                            </a>
-                        </th>
-                        <td>{{top.total_student}}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
         </div>
         <!-- END Content -->
         {% block footer %}

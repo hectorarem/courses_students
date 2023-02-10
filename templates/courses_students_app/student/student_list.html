@@ -1,0 +1,89 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block student_active %}{% endblock %}
+{% block title %} Estudiantes {% endblock %}
+
+{% block breadcrumb %}
+    {{block.super}}
+    <li class="breadcrumb-item"><a href="{% url 'student_list' %}">Estudiantes Listado</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+        <div class="card-header">
+            <a href="{% url 'student_create' %}" class="btn btn-primary" style="float: right">
+                <span class="bi bi-plus"> Estudiante</span>
+            </a>
+            <h3 class="card-title">Listado de <span>| estudiantes</span></h3>
+
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover datatable">
+                <thead>
+                <tr>
+                    <th>
+                        No.
+                    </th>
+                    <th>
+                        Nombre (s)
+                    </th>
+                    <th>
+                        Apellido (s)
+                    </th>
+                    <th>
+                        Edad
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for u in students %}
+                <tr>
+                    <td>
+                        {{ forloop.counter }}
+                    </td>
+                    <td>
+                        {{ u.name }}
+                    </td>
+                    <td>
+                        {{ u.lastname }}
+                    </td>
+                    <td>
+                        {{ u.age }}
+                    </td>
+                    <td>
+                        {{ u.email }}
+                    </td>
+                    <td>
+                        <span class="input-group-sm">
+                            <a href="{% url 'student_detail' u.pk %}"
+                               class="btn btn-sm btn-info">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="{% url 'student_update' u.pk %}"
+                               class="btn btn-sm btn-primary">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+
+                            <a href="{% url 'student_delete' u.pk %}"
+                               class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

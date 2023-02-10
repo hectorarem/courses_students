@@ -15,10 +15,13 @@ class Student(models.Model):
         ordering = ('name',)
 
     def __str__(self):
-        return f"{self.name} - {self.lastname}"
+        return f"{self.name} {self.lastname}"
+
+    def full_info(self):
+        return self.__str__() + f" || Edad: {self.age} || Email: {self.email}"
 
     def cursos_asociados(self):
-        return " || ".join([c.name for c in self.course_set.all()])
+        return " <br> ".join([c.name for c in self.course_set.all()])
 
 
 class Course(models.Model):

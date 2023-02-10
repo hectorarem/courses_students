@@ -1,0 +1,30 @@
+{% extends 'courses_students_app/student/student_list.html' %}
+{% load static %}
+
+{% block title %} Info Estudiantes {% endblock %}
+
+{% block breadcrumb %}
+    {{block.super}}
+    <li class="breadcrumb-item"><a href="{% url 'student_update' student.pk %}">Editar</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'student_detail' student.pk %}">Detalles</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+        <div class="card-header">
+            <h3 class="card-title">Información <span>| estudiante</span></h3>
+        </div>
+        <div class="card-body">
+            <p>Nombre: <b>{{student.name}}</b></p>
+            <p>Apellidos: <b>{{student.lastname}}</b></p>
+            <p>Edad: <b>{{student.age}}</b></p>
+            <p>Email: <b>{{student.email}}</b></p>
+            <br>
+            <p><b>Cursos:</b></p>
+            <p>{{student.cursos_asociados|safe}}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
