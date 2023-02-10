@@ -14,7 +14,7 @@ aplicación web con estructura monolítica con Python que permita la gestión de
     ```
     La variable LOCAL intercambia la base de datos local SQlite con PostgreSQL online
     
-1. Crear un nuevo entorno virtual:
+1. Crear un nuevo entorno virtual en la raiz del proyecto:
 
         python3 -m venv env
 
@@ -34,7 +34,9 @@ aplicación web con estructura monolítica con Python que permita la gestión de
 
 6. Entrar desde el navegador en http://127.0.0.1:8000
 
-7. Usuario Admin: `angelica` Password: `zaqwsxcderfvbgtyhnmjuik`
+7. Usuario: `angelica` 
+
+   Password: `zaqwsxcderfvbgtyhnmjuik`
 
 ## Descripción del ejercicio
 
@@ -43,7 +45,7 @@ Para ver la descripción completa del ejercicio, ir a
 
 ## Solución explicada
 
-Para ver la explicación de la solucion realizada ver
+Para ver la explicación de la solución realizada ver
 
 `docs/solucion.docx`
 
