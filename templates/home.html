@@ -125,7 +125,7 @@
                 {% for course in top_3_courses %}
                   <div class="post-item clearfix">
                     <img src="{% static 'imgs/course.png' %}" alt="course">
-                    <h4><a href="#">{{course.name}}</a></h4>
+                    <h4><a href="{% url 'courses_detail' course.pk %}">{{course.name}}</a></h4>
                     <p>Cantidad de estudiantes: {{course.total_student}} <br><i class="bi bi-calendar"></i>  {{course.start_date|date}} ({{course.get_schedule_display}})</p>
                   </div>
                 {% endfor %}
@@ -143,7 +143,7 @@
                 {% for student in students %}
                   <div class="post-item clearfix">
                     <img src="{% static 'imgs/student.png' %}" alt="course">
-                    <h4><a href="#">{{student.name}}</a></h4>
+                    <h4><a href="{% url 'student_detail' student.pk %}">{{student.name}}</a></h4>
                     <p>{{student.full_info}}</p>
                   </div>
                 {% endfor %}
